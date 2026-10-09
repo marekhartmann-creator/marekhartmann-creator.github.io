@@ -47,19 +47,16 @@ button:focus-visible,.s:focus-visible,#text p:focus-visible{outline:2px solid #c
 <header>
   <div class="k">Ukážka hlasového komentára</div>
   <h1>Hippokratova prísaha</h1>
-  <p>Pracovná ukážka na posúdenie hlasu a tempa. Vyberte verziu textu a spustite prehrávanie — čítaný odsek sa priebežne zvýrazňuje.</p>
+  <p>Pracovná ukážka na posúdenie hlasu a tempa. Spustite prehrávanie tlačidlom dole — čítaný odsek sa priebežne zvýrazňuje.</p>
 </header>
 <main>
-  <h2>Verzia textu</h2>
-  <div class="tabs" id="tabs"></div>
-  <p class="note">Kliknutím na ľubovoľný odsek sa prehrávanie presunie na dané miesto.</p>
+  <div class="tabs" id="tabs" hidden></div>
+  <p class="note" style="margin-top:28px">Kliknutím na ľubovoľný odsek sa prehrávanie presunie približne na dané miesto.</p>
 
   <h2>Text</h2>
   <div id="text"></div>
 
-  <h2>Porovnanie hlasov</h2>
-  <div class="samples" id="samples"></div>
-  <p class="note">Ten istý úvodný odsek v rôznych hlasoch. Celé nahrávky vyššie sú v Hlase A; po výbere sa dajú pripraviť v ktoromkoľvek z nich.</p>
+  <div id="samples" hidden></div>
 
   <footer id="foot"></footer>
 </main>
