@@ -74,7 +74,7 @@ button:focus-visible,.s:focus-visible,#text p:focus-visible{outline:2px solid #c
 const $=id=>document.getElementById(id),a=$('a');let D,T,sample=null,speeds=[1,1.15,1.3,.9],si=0;
 const f=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
 const dur=()=>sample?(a.duration||0):T.dur;
-function load(t,keep){T=t;sample=null;a.src=t.file;a.playbackRate=speeds[si];
+function load(t,keep){T=t;sample=null;a.pause();a.src=t.file;a.playbackRate=speeds[si];
   document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id==t.id));
   document.querySelectorAll('.s').forEach(x=>x.classList.remove('on'));
   $('text').innerHTML='';t.paras.forEach((p,i)=>{const e=document.createElement('p');e.textContent=p.x;e.tabIndex=0;if(p.h)e.className='h';
@@ -86,7 +86,7 @@ function tick(){const d=dur()||1,c=a.currentTime;$('cur').textContent=f(c);$('du
 let drag=false;$('seek').oninput=()=>drag=true;$('seek').onchange=()=>{a.currentTime=$('seek').value/1000*dur();drag=false};
 $('pp').onclick=()=>a.paused?a.play():a.pause();
 a.onplay=()=>{$('pp').textContent='❚❚';$('pp').setAttribute('aria-label','Pozastaviť')};
-a.onpause=()=>{$('pp').textContent='▶';$('pp').setAttribute('aria-label','Prehrať')};
+a.onpause=a.onemptied=()=>{$('pp').textContent='▶';$('pp').setAttribute('aria-label','Prehrať')};
 a.ontimeupdate=tick;a.onended=()=>{if(sample)load(T)};
 $('sp').onclick=()=>{si=(si+1)%speeds.length;a.playbackRate=speeds[si];$('sp').textContent=String(speeds[si]).replace('.',',')+'×'};
 fetch('data.json').then(r=>r.json()).then(d=>{D=d;
