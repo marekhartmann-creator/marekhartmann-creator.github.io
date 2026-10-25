@@ -152,11 +152,11 @@ button:focus-visible,.s:focus-visible,#text p:focus-visible,a:focus-visible,inpu
     </fieldset>
     <div><label for="napady">Máte chuť a nápady, ako to zmeniť? Napíšte nám. <span class="opt">(nepovinné)</span></label><textarea id="napady" name="napady"></textarea></div>
     <label class="consent" for="suhlas"><input type="checkbox" id="suhlas" name="suhlas" required>
-      <span>Súhlasím so spracovaním uvedených údajov podľa zásad ochrany osobných údajov. <span class="ph">[Odkaz na zásady – doplní sa.]</span></span></label>
-    <p class="err" id="err" hidden></p>
+      <span>Súhlasím so spracovaním uvedených údajov podľa <a href="zasady.html" target="_blank" rel="noopener">zásad ochrany osobných údajov</a>.</span></label>
+    <div hidden aria-hidden="true"><label for="web">Nevypĺňajte</label><input id="web" name="web" tabindex="-1" autocomplete="off"></div>
     <button class="send" type="submit">Pridať sa</button>
   </form>
-  <div class="ok" id="ok" hidden><strong>Ďakujeme, ste medzi nami.</strong><br>V pracovnej verzii sa údaje neukladajú – vo verejnej verzii príde potvrdenie e-mailom.</div>
+  <div class="ok" id="ok" hidden><strong>Ďakujeme, ste medzi nami.</strong><br><span id="okt">Potvrdenie sme vám poslali e-mailom.</span></div>
 
   <footer id="foot"></footer>
  </div>
@@ -179,6 +179,7 @@ button:focus-visible,.s:focus-visible,#text p:focus-visible,a:focus-visible,inpu
 </div></div>
 <audio id="a" preload="metadata"></audio>
 <script>
+const ENDPOINT='';const SUHLAS_VERZIA='2026-10-25';
 const $=id=>document.getElementById(id),a=$('a');let D,T,sample=null,speeds=[1,1.15,1.3,.9],si=0;
 const f=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
 const dur=()=>sample?(a.duration||0):T.dur;
@@ -209,7 +210,12 @@ $('f').addEventListener('submit',function(e){e.preventDefault();var m=[];
   if(!/^\S+@\S+\.\S+$/.test(this.email.value.trim()))m.push('zadajte platný e-mail');
   if(!this.suhlas.checked)m.push('potvrďte súhlas so spracovaním údajov');
   if(m.length){$('err').textContent='Ešte chýba: '+m.join(', ')+'.';$('err').hidden=false;return}
-  $('err').hidden=true;this.hidden=true;$('ok').hidden=false});
+  $('err').hidden=true;const F=this,done=()=>{F.hidden=true;$('ok').hidden=false};
+  if(!ENDPOINT){$('okt').textContent='Pracovná verzia: údaje sa zatiaľ neukladajú.';done();return}
+  const fd=new FormData(F),q=new URLSearchParams();for(const [k,v] of fd)if(k!=='pomoc'&&k!=='suhlas')q.set(k,v);
+  q.set('pomoc',fd.getAll('pomoc').join(', '));q.set('suhlas','ano');q.set('verzia',SUHLAS_VERZIA);
+  const b=F.querySelector('.send');b.disabled=true;b.textContent='Odosiela sa…';
+  fetch(ENDPOINT,{method:'POST',body:q}).then(r=>r.json()).then(j=>{if(j.ok)done();else throw 0}).catch(()=>{b.disabled=false;b.textContent='Pridať sa';$('err').textContent='Odoslanie sa nepodarilo. Skúste to, prosím, o chvíľu znova.';$('err').hidden=false})});
 </script>
 </body>
 </html>
