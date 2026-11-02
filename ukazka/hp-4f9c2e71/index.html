@@ -204,7 +204,8 @@ function load(t,keep){T=t;sample=null;a.pause();a.src=t.file;a.playbackRate=spee
   $('now').textContent=t.title+' — '+t.sub;$('dur').textContent=f(t.dur);$('cur').textContent='0:00';$('seek').value=0}
 function tick(){const d=dur()||1,c=a.currentTime;$('cur').textContent=f(c);$('dur').textContent=f(d);if(!drag)$('seek').value=c/d*1000;
   if(sample)return;let k=0;T.paras.forEach((p,i)=>{if(c>=p.t)k=i});
-  [...$('text').children].forEach((e,i)=>{const on=i==k&&(c>0||!a.paused);if(on&&!e.classList.contains('on')&&!a.paused){const c=$('colpr');if(c.scrollHeight>c.clientHeight+4&&e.offsetParent===c)c.scrollTo({top:e.offsetTop-c.clientHeight/2,behavior:'smooth'});else e.scrollIntoView({block:'center'})}e.classList.toggle('on',on)})}
+  const pv=$('text').querySelector('p.on'),follow=!$('f').contains(document.activeElement)&&(!pv||(r=>r.bottom>0&&r.top<innerHeight)(pv.getBoundingClientRect()));
+  [...$('text').children].forEach((e,i)=>{const on=i==k&&(c>0||!a.paused);if(on&&!e.classList.contains('on')&&!a.paused){const c=$('colpr');if(c.scrollHeight>c.clientHeight+4&&e.offsetParent===c)c.scrollTo({top:e.offsetTop-c.clientHeight/2,behavior:'smooth'});else if(follow)e.scrollIntoView({block:'center'})}e.classList.toggle('on',on)})}
 let drag=false;$('seek').oninput=()=>drag=true;$('seek').onchange=()=>{a.currentTime=$('seek').value/1000*dur();drag=false};
 $('pp').onclick=()=>a.paused?a.play():a.pause();
 a.onplay=()=>{$('pp').textContent='❚❚';$('pp').setAttribute('aria-label','Pozastaviť')};
