@@ -160,6 +160,10 @@ button:focus-visible,.s:focus-visible,#text p:focus-visible,a:focus-visible,inpu
       <div class="choices"><label><input type="checkbox" name="pomoc" value="šíriť výzvu"> šíriť výzvu</label><label><input type="checkbox" name="pomoc" value="organizačne"> organizačne</label><label><input type="checkbox" name="pomoc" value="inak"> inak</label></div>
       <input type="text" name="pomoc_ine" class="ine" maxlength="500" placeholder="inak – ako" aria-label="Ako inak by ste vedeli pomôcť">
     </fieldset>
+    <div><label for="skusenost">Ak chcete, podeľte sa o svoju skúsenosť <span class="opt">(nepovinné)</span></label><textarea id="skusenost" name="skusenost" maxlength="4000"></textarea>
+      <p class="hint">Prosíme, neuvádzajte mená ani údaje o svojom zdravotnom stave. Stačí opísať situáciu.</p>
+      <label class="consent" for="zverejnit"><input type="checkbox" id="zverejnit" name="zverejnit" value="ano">
+        <span>Súhlasím, aby iniciatíva moju skúsenosť použila anonymne, bez môjho mena. <span class="opt">(nepovinné)</span></span></label></div>
     <label class="consent" for="suhlas"><input type="checkbox" id="suhlas" name="suhlas" required>
       <span>Súhlasím so spracovaním uvedených údajov podľa <a href="zasady.html" target="_blank" rel="noopener">zásad ochrany osobných údajov</a>.</span></label>
     <div hidden aria-hidden="true"><label for="web">Nevypĺňajte</label><input id="web" name="web" tabindex="-1" autocomplete="off"></div>
