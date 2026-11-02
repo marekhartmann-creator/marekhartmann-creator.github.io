@@ -67,6 +67,7 @@ label,legend{font:600 14px/1.4 system-ui,sans-serif;display:block;margin-bottom:
 input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;font:16px/1.4 system-ui,sans-serif;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:11px 12px}
 textarea{min-height:110px;resize:vertical}
 fieldset{border:0;padding:0;margin:0;min-width:0}
+.ine{margin-top:8px}
 .choices{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:15px}
 .choices label{display:flex;gap:8px;align-items:center;margin:0;font-weight:400}
 .hint{font-size:13px;line-height:1.5;color:var(--warn);background:var(--warnbg);padding:8px 10px;border-radius:6px;margin:8px 0 0}
@@ -97,16 +98,14 @@ button:focus-visible,.s:focus-visible,#text p:focus-visible,a:focus-visible,inpu
 </header>
 <main class="cols">
  <div class="col col-ini" id="iniciativa">
-  <h2>Žijeme v dobe, kedy…</h2>
   <ul class="era">
-    <li><span>…</span> si lekár musí vybrať: poruší prísahu, alebo zákon. Oboje dodržať nedokáže.</li>
-    <li><span>…</span> systém platí lekárovi za to, že lieči, nie za to, že vylieči.</li>
-    <li><span>…</span> Hippokratova prísaha a zákon od lekára žiadajú dve rôzne veci.</li>
-    <li><span>…</span> lekár, ktorý pacientovi pomôže inak, než predpisuje tabuľka, riskuje vlastnú kariéru.</li>
-    <li><span>…</span> pacient čaká od lekára vyzdravenie, no sám mu, často nevedomky, zväzuje ruky.</li>
-    <li><span>…</span> sa ľudia hnevajú na lekárov za chyby, ktoré spravil systém.</li>
-    <li><span>…</span> poctivý lekár nemá ochranu, ak urobí to, čo považuje za správne.</li>
-    <li><span>…</span> najlepší lekári odchádzajú: do zahraničia, do súkromia alebo z medicíny úplne.</li>
+    <li>Žijeme v dobe, kedy účinné vyliečenie pacienta sa stáva pre lekára rizikom jeho vlastnej existencie!</li>
+    <li>Žijeme v dobe, kedy systém neplatí lekára za vyliečenie.</li>
+    <li>Žijeme v dobe, kedy hlavný zmysel Hippokratovej prísahy nie je chránený zákonom.</li>
+    <li>Žijeme v dobe, kedy si lekár musí vybrať, či poruší Hippokratovu prísahu alebo zákon, oboje sa nedá dodržať.</li>
+    <li>Žijeme v dobe, kedy pacient očakáva od lekára vyzdravenie, ale nevedomky to lekárovi nepriamo znemožňuje.</li>
+    <li>Žijeme v dobe, kedy pacient a občan kritizuje lekára za to, čo si občan sám zvolil.</li>
+    <li>Žijeme v dobe, kedy čestný lekár / človek nemá účinnú ochranu ak urobí to, čo sám považuje za správne.</li>
   </ul>
   <p class="call">Chceme, aby prísaha platila.</p>
 
@@ -127,30 +126,40 @@ button:focus-visible,.s:focus-visible,#text p:focus-visible,a:focus-visible,inpu
         <select id="kraj" name="kraj"><option value="">Vyberte kraj</option><option>Bratislavský</option><option>Trnavský</option><option>Trenčiansky</option><option>Nitriansky</option><option>Žilinský</option><option>Banskobystrický</option><option>Prešovský</option><option>Košický</option><option>Mimo Slovenska</option></select></div>
     </div>
     <fieldset>
-      <legend>Stretli ste sa s tým, že lekár nemohol urobiť to, čo považoval za správne?</legend>
-      <div class="choices"><label><input type="radio" name="q1" id="q1a" value="ano"> Áno</label><label><input type="radio" name="q1" id="q1n" value="nie"> Nie</label></div>
-      <label for="pribeh" style="margin-top:12px">Ak chcete, opíšte to <span class="opt">(nepovinné)</span></label>
-      <textarea id="pribeh" name="pribeh"></textarea>
-      <p class="hint">Prosíme, neuvádzajte mená ani údaje o svojom zdravotnom stave. Stačí opísať situáciu.</p>
+      <legend>1. Bola táto analýza Hippokratovej prísahy pre Vás zrozumiteľná?</legend>
+      <div class="choices"><label><input type="radio" name="q1" value="áno"> áno</label><label><input type="radio" name="q1" value="nie"> nie</label><label><input type="radio" name="q1" value="iné"> iné</label></div>
+      <input type="text" name="q1_ine" class="ine" maxlength="500" placeholder="iné – vlastná odpoveď" aria-label="Iná odpoveď na otázku 1">
     </fieldset>
     <fieldset>
-      <legend>Myslíte si, že sa to dá zmeniť?</legend>
-      <div class="choices"><label><input type="radio" name="q2" id="q2a" value="ano"> Áno</label><label><input type="radio" name="q2" id="q2n" value="nie"> Nie</label><label><input type="radio" name="q2" id="q2x" value="neviem"> Neviem</label></div>
+      <legend>2. Myslíte si, že táto analýza je pravdivá?</legend>
+      <div class="choices"><label><input type="radio" name="q2" value="áno"> áno</label><label><input type="radio" name="q2" value="nie"> nie</label><label><input type="radio" name="q2" value="iné"> iné</label></div>
+      <input type="text" name="q2_ine" class="ine" maxlength="500" placeholder="iné – vlastná odpoveď" aria-label="Iná odpoveď na otázku 2">
     </fieldset>
     <fieldset>
-      <legend>Chcete, aby Hippokratova prísaha opäť platila?</legend>
-      <div class="choices"><label><input type="radio" name="q3" id="q3a" value="ano"> Áno</label><label><input type="radio" name="q3" id="q3n" value="nie"> Nie</label></div>
+      <legend>3. Stretli ste sa s tým, že lekár nemohol urobiť to, čo považoval za správne?</legend>
+      <div class="choices"><label><input type="radio" name="q3" value="áno"> áno</label><label><input type="radio" name="q3" value="nie"> nie</label><label><input type="radio" name="q3" value="iné"> iné</label></div>
+      <input type="text" name="q3_ine" class="ine" maxlength="500" placeholder="iné – vlastná odpoveď" aria-label="Iná odpoveď na otázku 3">
     </fieldset>
     <fieldset>
-      <legend>Ako by ste vedeli pomôcť? <span class="opt">(môžete vybrať viac)</span></legend>
-      <div class="choices">
-        <label><input type="checkbox" name="pomoc" id="p1" value="sirit"> Šíriť výzvu medzi známymi</label>
-        <label><input type="checkbox" name="pomoc" id="p2" value="skusenost"> Podeliť sa o skúsenosť</label>
-        <label><input type="checkbox" name="pomoc" id="p3" value="odborne"> Odborne (som zdravotník)</label>
-        <label><input type="checkbox" name="pomoc" id="p4" value="organizacne"> Organizačne</label>
-      </div>
+      <legend>4. Chcete, aby Hippokratova prísaha platila a bola obojstranne vymožiteľná?</legend>
+      <div class="choices"><label><input type="radio" name="q4" value="áno"> áno</label><label><input type="radio" name="q4" value="nie"> nie</label><label><input type="radio" name="q4" value="iné"> iné</label></div>
+      <input type="text" name="q4_ine" class="ine" maxlength="500" placeholder="iné – vlastná odpoveď" aria-label="Iná odpoveď na otázku 4">
     </fieldset>
-    <div><label for="napady">Máte chuť a nápady, ako to zmeniť? Napíšte nám. <span class="opt">(nepovinné)</span></label><textarea id="napady" name="napady"></textarea></div>
+    <fieldset>
+      <legend>5. Myslíte si, že sa to dá zmeniť?</legend>
+      <div class="choices"><label><input type="radio" name="q5" value="áno"> áno</label><label><input type="radio" name="q5" value="nie"> nie</label><label><input type="radio" name="q5" value="iné"> iné</label></div>
+      <input type="text" name="q5_ine" class="ine" maxlength="500" placeholder="iné – vlastná odpoveď" aria-label="Iná odpoveď na otázku 5">
+    </fieldset>
+    <fieldset>
+      <legend>6. Máte chuť a nápady ako to zmeniť?</legend>
+      <div class="choices"><label><input type="radio" name="q6" value="áno"> áno</label><label><input type="radio" name="q6" value="nie"> nie</label><label><input type="radio" name="q6" value="iné"> iné</label></div>
+      <input type="text" name="q6_ine" class="ine" maxlength="500" placeholder="iné – vlastná odpoveď" aria-label="Iná odpoveď na otázku 6">
+    </fieldset>
+    <fieldset>
+      <legend>7. Ako by ste vedeli pomôcť? <span class="opt">(môžete vybrať viac)</span></legend>
+      <div class="choices"><label><input type="checkbox" name="pomoc" value="šíriť výzvu"> šíriť výzvu</label><label><input type="checkbox" name="pomoc" value="organizačne"> organizačne</label><label><input type="checkbox" name="pomoc" value="inak"> inak</label></div>
+      <input type="text" name="pomoc_ine" class="ine" maxlength="500" placeholder="inak – ako" aria-label="Ako inak by ste vedeli pomôcť">
+    </fieldset>
     <label class="consent" for="suhlas"><input type="checkbox" id="suhlas" name="suhlas" required>
       <span>Súhlasím so spracovaním uvedených údajov podľa <a href="zasady.html" target="_blank" rel="noopener">zásad ochrany osobných údajov</a>.</span></label>
     <div hidden aria-hidden="true"><label for="web">Nevypĺňajte</label><input id="web" name="web" tabindex="-1" autocomplete="off"></div>
@@ -179,7 +188,7 @@ button:focus-visible,.s:focus-visible,#text p:focus-visible,a:focus-visible,inpu
 </div></div>
 <audio id="a" preload="metadata"></audio>
 <script>
-const ENDPOINT='';const SUHLAS_VERZIA='2026-10-25';
+const ENDPOINT='';const SUHLAS_VERZIA='2026-11-02';
 const $=id=>document.getElementById(id),a=$('a');let D,T,sample=null,speeds=[1,1.15,1.3,.9],si=0;
 const f=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
 const dur=()=>sample?(a.duration||0):T.dur;
@@ -205,6 +214,7 @@ fetch('data.json').then(r=>r.json()).then(d=>{D=d;
     e.onkeydown=k=>{if(k.key=='Enter')e.onclick()};$('samples').append(e)});
   $('foot').textContent=(d.copyright?'Text: '+d.copyright+'. ':'')+'Hlasový komentár je strojovo generovaný. Pracovná verzia — neurčené na ďalšie šírenie.';
   load(d.tracks[0])});
+document.querySelectorAll('.ine').forEach(t=>t.addEventListener('input',()=>{if(t.value.trim()){const r=t.closest('fieldset').querySelector('input[value="iné"],input[value="inak"]');if(r)r.checked=true}}));
 $('f').addEventListener('submit',function(e){e.preventDefault();var m=[];
   if(!this.meno.value.trim())m.push('vyplňte meno');
   if(!/^\S+@\S+\.\S+$/.test(this.email.value.trim()))m.push('zadajte platný e-mail');
